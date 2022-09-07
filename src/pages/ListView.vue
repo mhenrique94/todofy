@@ -1,11 +1,18 @@
 <template>
   <div class="wrapperPage">
     <formTask
+      :key="componentKey"
       :task="task"
       :categories="categories"
+      :editingTask="editingTask"
       @salva-task="
         (task) => {
           postTasks(task);
+        }
+      "
+      @atualiza-task="
+        (mytask) => {
+          updateTasks(mytask);
         }
       "
     />
@@ -22,6 +29,8 @@
         @edita-task="
           (receives) => {
             task = receives;
+            editingTask = true;
+            forceRenderer();
           }
         "
       />
@@ -44,7 +53,7 @@ export default {
     return {
       editIsEnabled: false,
       listIsEnabled: true,
-      editingTask: true,
+      editingTask: false,
       tasks: [],
       task: {
         id: null,
@@ -54,6 +63,7 @@ export default {
         user: null,
       },
       categories: [],
+      componentKey: 0,
     };
   },
   methods: {
@@ -87,10 +97,11 @@ export default {
       fetch(`http://localhost:3000/tasks/${id}`, {
         method: "DELETE",
       });
+      window.location.href = "index.html";
     },
 
-    updateTasks() {
-      const data = this.task;
+    updateTasks(mytask) {
+      const data = mytask;
 
       const dataJson = JSON.stringify(data);
 
@@ -112,6 +123,9 @@ export default {
           this.task.user = resp.user;
         });
       window.location.href = "index.html";
+    },
+    forceRenderer() {
+      this.componentKey += 1;
     },
   },
   created() {

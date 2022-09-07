@@ -66,11 +66,20 @@
         <v-row>
           <v-btn class="mr-4" @click="reset"> Limpar Form </v-btn>
           <v-btn
+            v-if="editingTask === false"
             color="pink lighten-1 white--text"
             class="mr-4"
             @click="$emit('salva-task', myTask)"
           >
             Salvar
+          </v-btn>
+          <v-btn
+            v-else
+            color="pink lighten-1 white--text"
+            class="mr-4"
+            @click="$emit('atualiza-task', myTask)"
+          >
+            Atualizar
           </v-btn>
         </v-row>
       </v-container>
@@ -87,6 +96,9 @@ export default {
       required: true,
     },
     categories: [],
+    editingTask: {
+      type: Boolean,
+    },
   },
   data() {
     return {
