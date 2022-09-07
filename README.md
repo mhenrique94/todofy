@@ -1,24 +1,26 @@
-# todofy
+# todovue
 
-## Project setup
-```
-npm install
-```
+## Versão 2 do aplicativo todovue, feito inteiramente em componentes Vuejs.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+> Essa aplicação está sendo criada com base no desafio proposto em sala do programa Busertech @ Buser, por Roger Carmago.
+>
+> Github com projeto base para inspiração:
+https://github.com/huogerac/crud-js-materialize-api-mock
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
+__Funcionalidades presentes:__
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+__Funcionalidades pendentes:__
+- Listagem de tarefas;
+- Adição de tarefas;
+- Exclusão de tarefas;
+- Edição de tarefas;
+- Adição de tarefas na mesma página;
+- Me diga
+
+__Para inicializar:__
+1. Clone esse repositório em seu computador;
+1. Entre na pasta do projeto;
+1. Inicialize o projeto (custom script com lint, mock e server):
+        npm run servemock

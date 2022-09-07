@@ -1,0 +1,39 @@
+{
+  "tasks": [
+    {
+      "id": 5,
+      "title": "Retirar mensagem Covid tela principal",
+      "dueTo": "2022-09-08",
+      "project": "Tabalho",
+      "user": "Tchello"
+    },
+    {
+      "id": 6,
+      "title": "Isolar dependências do CRUD",
+      "dueTo": "2022-09-10",
+      "project": "Tabalho",
+      "user": "Tchello"
+    },
+    {
+      "id": 7,
+      "title": "sdsadas",
+      "dueTo": "2022-09-11",
+      "category": "Estudo",
+      "user": "vvvvvvvvvvvv"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Trabalho"
+    },
+    {
+      "id": 2,
+      "name": "Estudo"
+    },
+    {
+      "id": 3,
+      "name": "Pessoal"
+    }
+  ]
+}
