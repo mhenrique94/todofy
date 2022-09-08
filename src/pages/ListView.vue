@@ -1,10 +1,24 @@
 <template>
   <div class="wrapperPage">
+    <v-btn
+      class="mx-2"
+      fab
+      dark
+      color="pink"
+      @click="
+        editIsEnabled = true;
+        listIsEnabled = false;
+      "
+    >
+      <v-icon dark> mdi-plus </v-icon>
+    </v-btn>
     <formTask
+      v-show="editIsEnabled"
       :key="componentKey"
       :task="task"
       :categories="categories"
       :editingTask="editingTask"
+      @to-index="reload()"
       @salva-task="
         (task) => {
           postTasks(task);
@@ -16,7 +30,7 @@
         }
       "
     />
-    <div v-for="(tarefa, index) in tasks" :key="index">
+    <div v-for="(tarefa, index) in tasks" :key="index" v-show="listIsEnabled">
       <cardTask
         :tarefa="tarefa"
         :task="task"
@@ -30,6 +44,8 @@
           (receives) => {
             task = receives;
             editingTask = true;
+            editIsEnabled = true;
+            listIsEnabled = false;
             forceRenderer();
           }
         "
@@ -41,6 +57,7 @@
 <script>
 import formTask from "../components/Form.vue";
 import cardTask from "../components/Card.vue";
+import callApi from "@/callApi";
 
 export default {
   name: "ListView",
@@ -61,6 +78,7 @@ export default {
         dueTo: null,
         category: null,
         user: null,
+        isConclude: Boolean,
       },
       categories: [],
       componentKey: 0,
@@ -68,36 +86,24 @@ export default {
   },
   methods: {
     getTasks() {
-      fetch("http://localhost:3000/tasks")
-        .then((response) => response.json())
-        .then((jsontasks) => (this.tasks = jsontasks));
+      callApi.getTasks((respostaApi) => {
+        this.tasks = respostaApi;
+      });
     },
     getCategories() {
-      fetch("http://localhost:3000/categories")
-        .then((response) => response.json())
-        .then((jsoncats) => {
-          for (var c of jsoncats) {
-            this.categories.push(c.name);
-          }
-        });
+      callApi.getCategories((respostaApi) => {
+        for (var c of respostaApi) {
+          this.categories.push(c.name);
+        }
+      });
     },
     postTasks(task) {
-      const data = task;
-
-      const dataJson = JSON.stringify(data);
-
-      fetch("http://localhost:3000/tasks", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: dataJson,
-      });
-      window.location.href = "index.html";
+      callApi.postTasks(task);
+      this.reload();
     },
     deleteTasks(id) {
-      fetch(`http://localhost:3000/tasks/${id}`, {
-        method: "DELETE",
-      });
-      window.location.href = "index.html";
+      callApi.deleteTasks(id);
+      this.reload();
     },
 
     updateTasks(mytask) {
@@ -110,7 +116,7 @@ export default {
         headers: { "Content-Type": "application/json" },
         body: dataJson,
       });
-      window.location.href = "index.html";
+      this.reload();
     },
     editTasks(id) {
       fetch(`http://localhost:3000/tasks/${id}`)
@@ -121,11 +127,15 @@ export default {
           this.task.dueTo = resp.dueTo;
           this.task.project = resp.project;
           this.task.user = resp.user;
+          this.task.isConclude = resp.isConclude;
         });
-      window.location.href = "index.html";
+      this.reload();
     },
     forceRenderer() {
       this.componentKey += 1;
+    },
+    reload() {
+      window.location.href = "index.html";
     },
   },
   created() {

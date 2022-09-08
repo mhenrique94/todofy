@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <template>
   <div class="formulary">
     <v-form>
@@ -56,9 +57,7 @@
             required
           ></v-text-field>
           <v-checkbox
-            v-model="checkComplete"
-            :error-messages="errors"
-            value="1"
+            v-model="myTask.isConclude"
             label="Tarefa concluída"
             type="checkbox"
           ></v-checkbox>
@@ -80,6 +79,13 @@
             @click="$emit('atualiza-task', myTask)"
           >
             Atualizar
+          </v-btn>
+          <v-btn
+            color="grey lighten-1 white--text"
+            class="mr-4"
+            @click="$emit('to-index')"
+          >
+            Cancelar
           </v-btn>
         </v-row>
       </v-container>

@@ -6,9 +6,10 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "servemock":  "vue-cli-service lint & json-server --watch ./api/mock/db.json & vue-cli-service serve"
+    "servemock": "vue-cli-service lint & json-server --watch ./api/mock/db.json & vue-cli-service serve"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
