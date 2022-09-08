@@ -81,7 +81,9 @@ export default {
         isConclude: Boolean,
       },
       categories: [],
-      componentKey: 0,
+      componentKey: {
+        type: Number,
+      },
     };
   },
   methods: {

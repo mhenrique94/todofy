@@ -1,11 +1,12 @@
 <!-- eslint-disable vue/no-mutating-props -->
 <template>
   <div class="formulary">
-    <v-form ref="form">
+    <v-form ref="form" v-model="valid" lazy-validation>
       <v-container>
         <v-row>
           <v-text-field
             v-model="myTask.title"
+            :rules="titleRules"
             :counter="250"
             label="Título da tarefa"
             required
@@ -16,7 +17,7 @@
           <v-select
             v-model="myTask.category"
             :items="categories"
-            :rules="[(v) => !!v || 'Item is required']"
+            :rules="nameRules"
             label="Categoria"
             required
           ></v-select>
@@ -36,6 +37,7 @@
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
                 v-model="myTask.dueTo"
+                :rules="[(v) => !!v || 'Item is required']"
                 label="Selecione a data de expiração da tarefa"
                 prepend-icon="mdi-calendar"
                 readonly
@@ -54,6 +56,7 @@
             v-model="myTask.user"
             :counter="16"
             label="Autor"
+            :rules="nameRules"
             required
           ></v-text-field>
           <v-checkbox
@@ -109,6 +112,19 @@ export default {
   data() {
     return {
       myTask: { ...this.task },
+      valid: true,
+      nameRules: [
+        (v) => !!v || "Preencha esse campo",
+        (v) =>
+          (v && v.length <= 16) ||
+          "Esse campo precisar ter no máximo 16 caracteres",
+      ],
+      titleRules: [
+        (v) => !!v || "Name is required",
+        (v) =>
+          (v && v.length <= 250) ||
+          "Esse campo aceita no máximo 250 caracteres",
+      ],
     };
   },
   methods: {
