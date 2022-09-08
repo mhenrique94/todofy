@@ -1,7 +1,7 @@
 <template>
   <div class="wrapperPage">
     <v-btn
-      class="mx-2"
+      class="mx-2 btn-floating"
       fab
       dark
       color="pink"
@@ -105,30 +105,14 @@ export default {
       callApi.deleteTasks(id);
       this.reload();
     },
-
     updateTasks(mytask) {
-      const data = mytask;
-
-      const dataJson = JSON.stringify(data);
-
-      fetch(`http://localhost:3000/tasks/${this.task.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: dataJson,
-      });
+      callApi.updateTasks(mytask);
       this.reload();
     },
-    editTasks(id) {
-      fetch(`http://localhost:3000/tasks/${id}`)
-        .then((response) => response.json())
-        .then((resp) => {
-          this.task.id = resp.id;
-          this.task.title = resp.title;
-          this.task.dueTo = resp.dueTo;
-          this.task.project = resp.project;
-          this.task.user = resp.user;
-          this.task.isConclude = resp.isConclude;
-        });
+    editTasks() {
+      callApi.editTasks((respostaApi) => {
+        this.task = respostaApi;
+      });
       this.reload();
     },
     forceRenderer() {
@@ -149,5 +133,11 @@ export default {
 .wrapperPage {
   max-width: 50vw;
   margin: auto;
+}
+
+.btn-floating {
+  position: fixed;
+  left: 2%;
+  top: 15%;
 }
 </style>

@@ -1,6 +1,6 @@
 # todovue
 
-## Versão 2 do aplicativo todovue, feito inteiramente em componentes Vuejs, vuetify e json-server.
+## Versão 3 do aplicativo todovue, feito inteiramente em componentes Vuejs, vuetify e json-server.
 
 > Essa aplicação está sendo criada com base no desafio proposto em sala do programa Busertech @ Buser, por Roger Carmago.
 >

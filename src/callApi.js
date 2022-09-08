@@ -34,4 +34,21 @@ export default {
   deleteTasks: (id) => {
     axios.delete(`/tasks/${id}`);
   },
+  updateTasks(task) {
+    const dataJson = JSON.stringify(task);
+    const headers = { "Content-Type": "application/json" };
+    axios.patch(`/tasks/${task.id}`, dataJson, {
+      headers: headers,
+    });
+  },
+  editTasks: (callback) => {
+    axios
+      .get(`/tasks/${this.task.id}`)
+      .then((response) => {
+        callback(response.data);
+      })
+      .catch((error) => {
+        console.log("error:", error);
+      });
+  },
 };

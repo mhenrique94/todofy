@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/no-mutating-props -->
 <template>
   <div class="formulary">
-    <v-form>
+    <v-form ref="form">
       <v-container>
         <v-row>
           <v-text-field
@@ -110,6 +110,11 @@ export default {
     return {
       myTask: { ...this.task },
     };
+  },
+  methods: {
+    reset() {
+      this.$refs.form.reset();
+    },
   },
 };
 </script>
