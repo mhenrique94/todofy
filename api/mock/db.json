@@ -4,7 +4,7 @@
       "id": 1,
       "title": "Reservar um BUSER",
       "dueTo": "2022-09-30",
-      "category": "Pessoal",
+      "category": "Hobby",
       "user": "Buserteco",
       "isConclude": false
     }
@@ -21,6 +21,10 @@
     {
       "id": 3,
       "name": "Pessoal"
+    },
+    {
+      "name": "Hobby",
+      "id": 4
     }
   ]
 }

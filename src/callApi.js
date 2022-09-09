@@ -13,6 +13,17 @@ export default {
         console.log("error:", error);
       });
   },
+  pushCategory: (cat) => {
+    const data = cat;
+    const headers = { "Content-Type": "application/json" };
+    const dataJson = JSON.stringify(data);
+    axios.post("/categories", dataJson, {
+      headers: headers,
+    });
+  },
+  deleteCategory: (id) => {
+    axios.delete(`/categories/${id}`);
+  },
   getTasks: (callback) => {
     axios
       .get("/tasks")
