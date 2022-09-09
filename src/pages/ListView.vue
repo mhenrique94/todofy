@@ -134,7 +134,7 @@ export default {
 <style>
 .wrapperPage {
   max-width: 50vw;
-  margin: auto;
+  margin-left: 20%;
 }
 
 .btn-floating {

@@ -12,8 +12,8 @@
         <!-- If using vue-router -->
         <router-view></router-view>
       </v-container>
+      <Calendar />
     </v-main>
-
     <v-footer app>
       <!-- -->
     </v-footer>
@@ -22,12 +22,11 @@
 
 <script>
 import Navbar from "./components/Navbar.vue";
+import Calendar from "./components/Calendar.vue";
 
 export default {
   name: "App",
-  data: () => ({
-    //
-  }),
-  components: { Navbar },
+  data: () => ({}),
+  components: { Navbar, Calendar },
 };
 </script>

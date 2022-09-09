@@ -13,7 +13,7 @@
             :value="task.title"
           ></v-text-field>
         </v-row>
-        <v-row>
+        <v-row class="centerLine">
           <v-select
             v-model="myTask.category"
             :items="categories"
@@ -21,6 +21,9 @@
             label="Categoria"
             required
           ></v-select>
+          <router-link to="/manage" class="link"
+            ><v-icon>mdi-dots-horizontal</v-icon></router-link
+          >
         </v-row>
         <v-row>
           <v-date></v-date>
@@ -139,5 +142,9 @@ export default {
 .formulary {
   width: 50vw;
   max-width: 50vw;
+}
+.link {
+  margin: 14px 0 auto 14px;
+  text-decoration: none;
 }
 </style>

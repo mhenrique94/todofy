@@ -39,11 +39,6 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  width: 50vw;
-  max-width: 50vw;
-  margin: 20px auto;
-}
 .cardText {
   padding-left: 5%;
 }
