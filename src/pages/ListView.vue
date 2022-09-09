@@ -14,7 +14,12 @@
     </v-btn>
 
     <div>
-      <v-text-field v-model="input" label="Buscar" height="40"></v-text-field>
+      <v-text-field
+        v-show="!editIsEnabled"
+        v-model="input"
+        label="Buscar"
+        height="40"
+      ></v-text-field>
     </div>
     <formTask
       v-show="editIsEnabled"

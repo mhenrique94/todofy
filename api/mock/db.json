@@ -26,5 +26,19 @@
       "name": "Hobby",
       "id": 4
     }
+  ],
+  "users": [
+    {
+      "name": "Buserteco",
+      "id": 1
+    },
+    {
+      "name": "Marcelo",
+      "id": 2
+    },
+    {
+      "name": "Victor",
+      "id": 3
+    }
   ]
 }

@@ -13,6 +13,16 @@ export default {
         console.log("error:", error);
       });
   },
+  getUsers: (callback) => {
+    axios
+      .get("/users")
+      .then((response) => {
+        callback(response.data);
+      })
+      .catch((error) => {
+        console.log("error:", error);
+      });
+  },
   pushCategory: (cat) => {
     const data = cat;
     const headers = { "Content-Type": "application/json" };
@@ -21,8 +31,19 @@ export default {
       headers: headers,
     });
   },
+  pushUsers: (user) => {
+    const data = user;
+    const headers = { "Content-Type": "application/json" };
+    const dataJson = JSON.stringify(data);
+    axios.post("/users", dataJson, {
+      headers: headers,
+    });
+  },
   deleteCategory: (id) => {
     axios.delete(`/categories/${id}`);
+  },
+  deleteUser: (id) => {
+    axios.delete(`/users/${id}`);
   },
   getTasks: (callback) => {
     axios
