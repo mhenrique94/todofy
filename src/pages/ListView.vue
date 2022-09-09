@@ -12,6 +12,10 @@
     >
       <v-icon dark> mdi-plus </v-icon>
     </v-btn>
+
+    <div>
+      <v-text-field v-model="input" label="Buscar" height="40"></v-text-field>
+    </div>
     <formTask
       v-show="editIsEnabled"
       :key="componentKey"
@@ -30,7 +34,11 @@
         }
       "
     />
-    <div v-for="(tarefa, index) in tasks" :key="index" v-show="listIsEnabled">
+    <div
+      v-for="(tarefa, index) in inputSearch"
+      :key="index"
+      v-show="listIsEnabled"
+    >
       <cardTask
         :tarefa="tarefa"
         :task="task"
@@ -84,6 +92,7 @@ export default {
       componentKey: {
         type: Number,
       },
+      input: "",
     };
   },
   methods: {
@@ -127,6 +136,13 @@ export default {
   created() {
     this.getTasks();
     this.getCategories();
+  },
+  computed: {
+    inputSearch() {
+      return this.tasks.filter((elem) =>
+        elem.title.toLowerCase().includes(this.input.toLowerCase())
+      );
+    },
   },
 };
 </script>
